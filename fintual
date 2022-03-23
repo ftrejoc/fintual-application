@@ -28,9 +28,7 @@ class Portfolio:
     def Profist_bonus_track(self, first_date, second_date):
         # First I get the portfolio return between the days given
         portfolio_return_as_number = self.Profit(first_date, second_date) / 100
-        # Then I calculate the number of years between thos days. I need that
-        # information for the annualized return formula.
+        # Then I calculate the number of days.
         number_of_days = second_date - first_date
-        number_of_years = number_of_days / 365
         # Then I return the annualized return
-        return (((1 + portfolio_return_as_number)**(1/number_of_years)) - 1)
+        return (((1 + portfolio_return_as_number)**(365/number_of_days)) - 1)
