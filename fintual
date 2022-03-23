@@ -1,0 +1,31 @@
+class Portfolio:
+
+    def __init__(self):
+        # Stocks that will be in my portfolio
+        self.stocks = []
+    
+    def Profit(self, first_date, second_date):
+        total_profit = 0
+        # First I check if I have any stock in my Portfolio.
+        # If I do not have any I just return 0
+        if not self.stocks:
+            # Return the total profit as a percentage
+            return total_profit * 100
+        # If I have stocks, I calculate the price at each day and then substract their prices
+        # and divide them by the price of the first date. I do this for each stock.
+        for stock in self.stocks:
+            price_second_date = stock.Price(second_date)
+            price_first_date = stock.Price(first_date)
+            total_profit += ((price_second_date - price_first_date) / price_first_date)
+        # Return the total profit as a percentage
+        return total_profit * 100
+    
+    def Profist_bonus_track(self, first_date, second_date):
+        # First I get the portfolio return between the days given
+        portfolio_return_as_number = self.Profit(first_date, second_date) / 100
+        # Then I calculate the number of years between thos days. I need that
+        # information for the annualized return formula.
+        number_of_days = second_date - first_date
+        number_of_years = number_of_days / 365
+        # Then I return the annualized return
+        return (((1 + portfolio_return_as_number)**(1/number_of_years)) - 1)
